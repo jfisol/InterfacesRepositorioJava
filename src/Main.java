@@ -33,11 +33,11 @@ public class Main {
 
         cliente.forEach(c -> System.out.println(c));
 
-        System.out.println("=======ELIMINAR CLIENTE============");
+      /*  System.out.println("=======ELIMINAR CLIENTE============");
 
         repo.eliminarCliente(4);
         System.out.println("Cliente eliminado");
-        cliente.forEach(System.out::println);
+        cliente.forEach(System.out::println);*/
 
     }
 }

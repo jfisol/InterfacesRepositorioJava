@@ -54,8 +54,10 @@ public class ClienteListRepositorio implements CrudRepositorio, OrdenableReposit
 
     @Override
     public List<Cliente> listar(String campo, Direccion dir) {
+        List<Cliente>ListaOrdenada =new ArrayList<>(this.datasource);
+
         //Cualquier implementacion de un list tiene el objeto de tipo Sort
-        datasource.sort(new Comparator<Cliente>() {
+        ListaOrdenada.sort(new Comparator<Cliente>() {
             @Override
             public int compare(Cliente a, Cliente b) {
                 int resultado = 0;
@@ -84,7 +86,7 @@ public class ClienteListRepositorio implements CrudRepositorio, OrdenableReposit
                 return resultado;
             }
         });
-        return this.datasource;
+        return ListaOrdenada;
     }
 
     @Override
