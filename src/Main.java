@@ -1,12 +1,13 @@
 import org.figueroa.poointerfaces.modelo.Cliente;
 import org.figueroa.poointerfaces.repositorio.*;
+import org.figueroa.poointerfaces.repositorio.lista.ClienteListRepositorio;
 
 import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
 
-        CrudRepositorio repo = new ClienteListRepositorio(); //Clase principal; donde se encuentran todos los métodos
+        OrdenablePaginableCrudRepositorio<Cliente> repo = new ClienteListRepositorio(); //Clase principal; donde se encuentran todos los métodos
         repo.crearCliente(new Cliente("Pepito","Sanchez"));
         repo.crearCliente(new Cliente("Juanito","Soto"));
         repo.crearCliente(new Cliente("SArita","Conor"));

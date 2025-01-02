@@ -1,65 +1,66 @@
 package org.figueroa.poointerfaces.repositorio;
 
+import org.figueroa.poointerfaces.modelo.BaseEntity;
 import org.figueroa.poointerfaces.modelo.Cliente;
 
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
-public class ClienteListRepositorio implements CrudRepositorio, OrdenableRepositorio,PaginableRepositorio{
+public abstract class AbstractaClienteListRepositorio<T extends BaseEntity> implements OrdenablePaginableCrudRepositorio<T>{
 
-   private List<Cliente>datasource;
+   protected List<T>datasource;
 
-    public ClienteListRepositorio() {
+    public AbstractaClienteListRepositorio() {
 
         this.datasource = new ArrayList<>();
     }
 
     @Override
-    public List<Cliente> listar() {
+    public List<T> listar() {
         return this.datasource;
     }
 
     @Override
-    public Cliente porId(Integer id) {
-        Cliente resultado = null;
-        for(Cliente cli: datasource){
-            if (cli.getId().equals(id)){
-                resultado = cli;
+    public T porId(Integer id) {
+        T resultado = null;
+        for(T t: datasource){
+            if (t.getId().equals(id)){
+                resultado = t;
             }
         }
         return resultado;
     }
 
     @Override
-    public void crearCliente(Cliente cliente) {
+    public void crearCliente(T t) {
 
-        this.datasource.add(cliente);
+        this.datasource.add(t);
     }
 
-    @Override
-    public void editarCliente(Cliente cliente) {
-        Cliente clie = this.porId(cliente.getId());
-        clie.setNombre(cliente.getNombre());
-        clie.setApellido(cliente.getApellido());
+  /*  @Override
+    public void editarCliente(T t) {
+        Cliente clie = this.porId(t.getId());
+        clie.setNombre(t.getNombre());
+        clie.setApellido(t.getApellido());
 
-    }
+    }*/
 
     @Override
     public void eliminarCliente(Integer id) {
-        Cliente clie = this.porId(id);
+        T clie = this.porId(id);
         datasource.remove(clie);
 
     }
 
-    @Override
-    public List<Cliente> listar(String campo, Direccion dir) {
-        List<Cliente>ListaOrdenada =new ArrayList<>(this.datasource);
+  /*  @Override
+    public List<T> listar(String campo, Direccion dir) {
+        List<T>ListaOrdenada =new ArrayList<>(this.datasource);
 
         //Cualquier implementacion de un list tiene el objeto de tipo Sort
-        ListaOrdenada.sort(new Comparator<Cliente>() {
+        ListaOrdenada.sort(new Comparator<T>() {
             @Override
-            public int compare(Cliente a, Cliente b) {
+            public int compare(T a, T b) {
                 int resultado = 0;
                 if (dir == Direccion.ASC){
                     switch (campo){
@@ -88,9 +89,9 @@ public class ClienteListRepositorio implements CrudRepositorio, OrdenableReposit
         });
         return ListaOrdenada;
     }
-
+*/
     @Override
-    public List<Cliente> listar(int desde, int hasta) {
+    public List<T> listar(int desde, int hasta) {
         return this.datasource.subList(desde,hasta);
     }
 }

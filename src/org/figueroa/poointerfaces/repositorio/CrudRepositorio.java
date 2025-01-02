@@ -4,14 +4,14 @@ import org.figueroa.poointerfaces.modelo.Cliente;
 
 import java.util.List;
 
-public interface CrudRepositorio {
+public interface CrudRepositorio<T> {
 
-     List<Cliente> listar();
-     Cliente porId(Integer id);
+     List<T> listar();
+     T porId(Integer id);
 
-     void crearCliente(Cliente cliente);
+     void crearCliente(T cliente);
 
-     void editarCliente(Cliente cliente);
+     void editarCliente(T cliente);
 
      void eliminarCliente(Integer id);
 
